@@ -1,0 +1,12 @@
+- HTML
+  - HTML
+  - CSS
+  - Javascript
+- HTML elements
+  - tags
+    - <q> vs <blockcontent>
+      - inline vs block level element
+    - <i> vs <em>
+      - italic vs emphasis
+    - <b> vs <strong>
+      - bold vs strong importantance
