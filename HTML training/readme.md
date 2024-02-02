@@ -10,3 +10,16 @@
       - italic vs emphasis
     - \<b\> vs \<strong\>
       - bold vs strong importantance
+    - \<time\>
+      - denotes time
+      - datetime attribute to allow program to parse the time regardless of the text actually between the tags
+    - \<code\>
+      - to write about code. Text put inside tags are just displayed as browser default monospace font. Better off using css
+    - html entities
+      - for html reserved character (Ex: &lt to represent <)
+    - \<br\> 
+      - line break
+    - \<pre\>
+      - makes browser acknowledge spacing between lines and words within tag
+    - Subscript, Superscript, small text
+      - \<sup\>, \<sub\>, <small> for small meaning (Ex: copyright or fine print) 
