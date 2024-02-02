@@ -17,9 +17,36 @@
       - to write about code. Text put inside tags are just displayed as browser default monospace font. Better off using css
     - html entities
       - for html reserved character (Ex: &lt to represent <)
+      - Starts with & and ends with ;
+      - \&nbsp; non breaking space where browser won't break line here
     - \<br\> 
       - line break
     - \<pre\>
       - makes browser acknowledge spacing between lines and words within tag
     - Subscript, Superscript, small text
-      - \<sup\>, \<sub\>, <small> for small meaning (Ex: copyright or fine print) 
+      - \<sup\>, \<sub\>, <small> for small meaning (Ex: copyright or fine print)
+- HTML Properties
+  - Browser Inspector
+  - Aria accesibility
+  - tags can have attributes
+  - \<!-- --\> for commenting
+- Links and Navigation
+  - Links
+    - \<a> tag anchor and href attribute is a the hypertext reference defines the linK
+    - hrefs ideally include http; sometimes browser can fill in
+    - HTTPS means communication will be secure/encrypted 
+  - URL Path
+    - Absolute Url
+    - Relative Url
+      - can point to images,gifs,html files
+      - navigates folder like
+    - Folder paths actually look for a index.html file under the folder
+      - website.com/page is the same as website.com/page/index.html is the same as website.com/page/
+  - Navigation
+    - \<nav> though needs css to actually look good, implies this block is for navgiation on the website
+    - \<footer> implies block is the footer of the page like in a book
+- Images
+  - \<img> tag
+  - alt attribute for alternative text when image won't load
+  - width and height attributes refer to pixels
+    - lets website precalculate the size for loading so elements don't jump around  
