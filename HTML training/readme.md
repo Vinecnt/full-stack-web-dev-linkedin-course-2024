@@ -4,9 +4,9 @@
   - Javascript
 - HTML elements
   - tags
-    - <q> vs <blockcontent>
+    - \<q\> vs \<blockcontent\>
       - inline vs block level element
-    - <i> vs <em>
+    - \<i\> vs \<em\>
       - italic vs emphasis
-    - <b> vs <strong>
+    - \<b\> vs \<strong\>
       - bold vs strong importantance
