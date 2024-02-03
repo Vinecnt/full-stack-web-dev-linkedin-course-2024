@@ -1,8 +1,24 @@
-- HTML
+# HTML Notes
+
+- [HTML Notes](#html-notes)
+  - [HTML](#html)
+  - [HTML elements](#html-elements)
+  - [HTML Properties](#html-properties)
+  - [Links and Navigation](#links-and-navigation)
+  - [Images](#images)
+  - [Media](#media)
+  - [More Ways to identify content](#more-ways-to-identify-content)
+  - [HTML page](#html-page)
+  - [Forms](#forms)
+  - [HTML Tables](#html-tables)
+  - [More info](#more-info)
+
+
+## HTML
   - HTML
   - CSS
   - Javascript
-- HTML elements
+## HTML elements
   - tags
     - \<q\> vs \<blockcontent\>
       - inline vs block level element
@@ -25,12 +41,12 @@
       - makes browser acknowledge spacing between lines and words within tag
     - Subscript, Superscript, small text
       - \<sup\>, \<sub\>, <small> for small meaning (Ex: copyright or fine print)
-- HTML Properties
+## HTML Properties
   - Browser Inspector
   - Aria accesibility
   - tags can have attributes
   - \<!-- --\> for commenting
-- Links and Navigation
+## Links and Navigation
   - Links
     - \<a> tag anchor and href attribute is a the hypertext reference defines the linK
     - hrefs ideally include http; sometimes browser can fill in
@@ -45,8 +61,201 @@
   - Navigation
     - \<nav> though needs css to actually look good, implies this block is for navgiation on the website
     - \<footer> implies block is the footer of the page like in a book
-- Images
-  - \<img> tag
-  - alt attribute for alternative text when image won't load
-  - width and height attributes refer to pixels
-    - lets website precalculate the size for loading so elements don't jump around  
+## Images
+  - Images
+    - \<img> tag
+    - alt attribute for alternative text when image won't load
+    - width and height attributes refer to pixels
+      - lets website precalculate the size for loading so elements don't jump around  
+  - Image formats
+    - Constant battle of aiming for high quality and small file size
+    - .gif
+      - oldest, 256 colors, can be transparent, good for large areas of a single color
+    - .svg
+      - vector file, instructions for drawing
+      - complex drawings
+      - can be scaled big or small without loss of quality
+    - .jpg
+      - compressing photos
+    - .png
+      - good for compression, photos, and transparency 
+  - Responsive Images
+    - Deliver different image files for different sized screens
+    - Create multiple copies of images at different resolutions
+    - srcset attribute to point to multiple images
+  - Responsive width
+    - choose images based in viewport width
+    - size attribute to specify breakpoints to which image to pick
+  - Responsive pictures
+    - \<picture> tag
+    - Want to use different pictures for different size devices
+    - \<source> tag uses \<srcset>
+    - though lot of work to do manually, libaries and frameworks typically just have you upload the one large version
+  - Figue and Figcaption
+    - \<Figcaption>
+      - To Caption figures
+    - \<Figure>
+      - For figures and photos
+    - Search engines use the two elements good for seo 
+## Media
+  - Audio
+    - \<audio>\</audio>
+    - uses src attribute
+    - controls attribute existing will use browser playing
+    - loop causes to play again
+    - autoplay causes to autplay
+    - has closing tag to support multiple sources
+    - mp3 is primary format
+    - Can supply resilient text
+  - Video
+    - \<video>\</video>
+    - H.264 has highest support across browser
+      - not open source
+      - perhaps WebM or avi1 will win out in the future
+    - Can have multiple source attributes
+      - plays first working source
+      - nothing in html lets you control the resolution video plays at; app like netflix make something adaptive bitrate streaming; usually embed video streamer
+  - Captions and subtitle
+    - ```<track>```
+    - supply captions source, kind, label, srclang
+    - could make kind="descriptions"
+      - video more accesible to blind or hearing impaired
+    - Chapter division in VTT
+  - Embedding other media through iframes
+    - take content from another website and put it in right in the website
+    - typically get the html from service you're using
+    - typically is an iframe
+      - watch out for security because supplied by 3rd party
+## More Ways to identify content
+- Languages
+  - lang="en-US" in \<html>\</html>
+  - affects spell checkers
+  - universal attribute
+    - can put anywhere, divs and spans
+  - dir universal attribute to show what direction text flows
+  - charset attribute
+    - ASCII 128 character for english
+    - Unicode giant UTF-8 spec
+      - try to support all languages
+    - ```<meta><meta>``` charset="UTF-8"
+- Generic elements div and span
+  - when no other elements make sense
+  - Value of semantic blocks
+    - could technically make everything out of divs but it's bad and hard to read
+  - div 
+    - block level element
+  - span 
+    - inline
+  - both do nothing until css specifies
+  - global attributes
+    - ex: class, id, lang, aria roles
+## HTML page
+- HTML page
+  - works by
+    - user visits a url
+      - sends a get reset
+    - Web server sends back one html file
+    - Browser reads the html file top to bottom
+    - usually the top of the web page contain more files for the browser to head (css, scripts)
+  - Html file structure
+    - top of doc must contain
+      - doctype declaration
+        - declares which era html file is from
+      - html tag with language and dir
+        - iniside, head
+          - contains the metadata not displayed
+        - then body
+          - contains stuff displays
+- document head
+  - meta only used in the head tag
+    - tell browser is responsive page
+      - viewport
+    - description
+  - title tag is used by the browser
+    - name in tab and bookmark
+  - link element
+    - link to other css
+  - rel
+    - tell what browl
+  - href is url to webiste
+  - script tag
+    - load javascript file
+    - technically can put script tag at bottom
+- Structure Content in body
+  - main
+    - once per webpage
+  - header and footer (like in a book page)
+    - don't confused with head
+    - again all semantic meanings
+  - Article
+    - wrap around article snippet
+    - just mean this thing is a unit of content
+  - Section
+    - wrap around sections of content
+    - or zones
+    - flexible element
+  - Aside
+    - marks off to the side or side bar
+    - inset panel
+    - perhaps advertisement
+- Putting together Html together is like an art, refer to other good sites
+## Forms
+- Basic forms
+  - how to interact with browser
+  - ```<form></form>``` element
+  - label attribute
+  - input element
+    - is a replaced element
+      - browser loads the code itself
+  - button element
+  - action attribute; get method not a good idea
+  - Need attribute name in input
+  - connect label and input field
+    - wrap label around input
+    - both set for tag to same value
+- Form complex actions
+  - type attribute to input
+  - type attribute set to email
+    - client side validation
+  - button type submit
+  - required tag for required fields
+  - placeholder attribute for default value
+    - disappears when field clicked
+  - value attribute, what the input sets
+- Types of form
+  - type attribute in input
+    - search
+    - email
+    - phone
+    - password
+  - for big text use textarea element
+    - scroll bar and handle for resize
+  - more types
+    - date
+    - color
+    - file
+    - checkbox
+      - has attribute checked
+    - radio
+## HTML Tables
+- When to use a table
+  - Don't misuse html tables with non table things
+    - don't use a table for a button
+  - one special note is html email; better formats aren't really supported
+  - tabular data; data is organized in rows and columns where data relays both
+    - does a table make data more sense
+- Table tags
+  - \<table>
+    - wraps whole table
+  - \<tr>
+    - table row
+  - \<th>
+    - table header
+    - column header
+  - \<td>
+    - actual table data
+  - put \<th> in first \<tr> row
+## More info
+- HTML 5
+- https://html.spec.whatwg.org/
+- The living standard
