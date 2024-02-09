@@ -3,6 +3,7 @@
 */
 html {
     box-sizing: border-box;
+    background-color: bisque;
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -17,6 +18,13 @@ body header::before {
     height: 375px;
     margin: 0px;
     /* content: ""; */
+}
+
+body {
+    margin: 0 20%;
+    margin-bottom: 0;
+    padding: 0 5%;
+    background-color: aliceblue;
 }
 
 .logos {
