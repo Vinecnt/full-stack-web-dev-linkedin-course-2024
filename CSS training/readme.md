@@ -3,6 +3,9 @@
 - [CSS Training Notes](#css-training-notes)
   - [Getting Started](#getting-started)
   - [Core Concepts](#core-concepts)
+  - [CSS Box Model](#css-box-model)
+  - [Layouts, Floats, Possition](#layouts-floats-possition)
+  - [Flexbox and grid](#flexbox-and-grid)
 
 ## Getting Started
 - Relative and absolute paths
@@ -179,3 +182,217 @@
   - overriding important requires !important with more specficity
     - bad practice 
     - avoid if can
+## CSS Box Model
+- 4 parts concentric parts
+  - content
+    - width and height
+  - padding
+    - length and percentage
+  - border
+    - border style
+  - margin
+    - length and percentage
+- Box Sizing
+  - how total width and height of element are calculated
+  - content-box and border-box
+  - context-box is default
+    - padding and border will increases contenxt-box total size
+      - margin adds space around element so not included in total size of element (still affects how much space element uses)
+  - border box
+    - padding and border will shrink content part to maintain overall size
+      - margin not included
+  - Usually easier to size elements using border-box because stays constant when messing with padding and border
+  - Box Model Fix proprosed by Paul irish
+    - where set html type selector to be border-box and then make everything (*,*:before,*:after) inherit the border-box styling from ancestor
+- Inline and block displays
+  - Block elements
+    - take height of content
+    - take width of container
+      - that's why sequential ones takes newline
+  - Inline elements
+    - take height and width of content
+    - displayed left to right
+    - wraps around
+  - display
+    - property that affects default behavior of block and inline
+      - block, inline, and inline-block 
+    - Adding width and height to inline elements have no effect because they take up the width and height of the content
+    - background color doesn't extend to the space taken by marging because margin is the space around the element by definition
+    - Margin in inline elements only affect left and right sides
+- Footer Style
+  - Can turn a unordered llst of objects into a row of objects by
+    - applying a property on an ancestor class to have no list style (list-style-type: none) and remove padding (padding: 0)
+  - wrapping 
+- Browser Developer Tool
+  - very nice, ctrl+shift+i on chrome
+  - hover of element on page and will be highlighted in editor and vice versa
+  - can directly edit the css and see the padding and margins 
+- Box Model quirks
+  - margins overlap taking the highest of the two
+  - two spans seperated by a newline in vscode will have a slight span between them in html
+    - Fix 1: putting second span in class of margin-left: -4px would suffice
+      - cannot put negative values in padding
+    - Fix 2: put a wrapper div with a class having property font-size:0px;, but then put a type selector (which outweighs) with a font-size: 16px
+- Setting background image of page
+  - body has an 8px default margin?
+  - set background height to 100% to stretech image to height of container
+- Using negative margins
+  - margins are relative
+  - negative margin pulls elements from the corrsponding side
+- Ceneter Aligning with Margings
+  - Auto for legt and right values to cneter align block elements
+  - Need add a width
+    - if span across no need to cener align it
+    - margin: 0 auto
+      - default 8px margin on body
+      - the auto adds marging width left and right of element
+  - If want to center element but have background span the width of the page
+    - add a container with class for background
+    - add background color to the containter
+- Add content wrappers
+  - a general purpose class to center elements by adding margins on left and right side of elements
+  - max-width makes the element go to max of this width
+    - so when viewing on smaller view ports, element shrinks with small screen
+    - However, can then add padding so for small view ports text won't run up again edges
+- Adding header image
+  - In CSS, ::before creates a pseudo-element that is the first child of the selected element. It is often used to add cosmetic content to an element with the content property. It is inline by default.
+    - will need to change in property for dipslay to use block properties if want to act like block
+## Layouts, Floats, Possition
+- Floats
+  - more popular in legac
+  - normal flow
+    - blocks layer on top of each other
+  - Float takes elements out of the flow order
+  - Content in flow order will wrap around floated image
+    - Can use clear property to clear floats and not wrap around them
+      - clear: both, left, right
+      - clear property returns elements that follow a floated element back to the normal flow
+  - When no element in same container as the float to apply clear style to, it must be applied to parent element instead
+  - Overflow
+    - used to clear floats
+    - hidden
+      - overflowed text in a box is cut off
+    - auto  
+      - a scroll bar is added when overflow
+  - Clear Fix hack
+    - in a parent class that wraps the floated elements, add ::after pseudo class so flowwing elements in that class will clear:both
+  - Dipslay
+    - in new formats
+    - display: flow-root
+      - put in parent element of floated elements
+      - this way won't have to worry about floats poking out of containers
+      - is nice because float elements won't spin into neighboring elements outside of parent element
+- Position property
+  - used to position elements by change the flow of document
+    - static 
+      - default
+      - not positioned
+      - not affected by top bottom left right properties
+    - absolute
+      - position:absolute
+        - relative to the body element by default
+        - will be offset by an amount speficied (top,bottom,left right)
+        - is removed from the flow so next items will be moved to fill up it's space
+        - When page scrolls it doesn't move
+          - poisition only is calculated when page loads
+        - Is relative to the nearest positioned element (an element with the positition property)
+          - if not exist will be relative to the body
+          - position relative is the onl one that doesn't break the natural flow 
+    - relative
+      - top: 20px
+        - will be pushed "down" 20 pixels from the top of its original position
+        - if bottom: 20px also exists, it will be ignored
+        - if left and right properties exist, the right will be ignored
+          - this ignoring rules applies to all positions
+    - fixed
+      - remove from normal flow
+      - is relative to the view port even on page scroll
+      - not affected by positioned parents or ancestor elements
+    - sticky
+      - Similar to relative position
+      - will not result in changes until at least one offset property added
+      - element stays until you scroll the page
+      - when offset set value is met, it becomes fixed
+      - Use it for navigation bars because it removes things from the flow
+      - also personally it's reminscent of annoying ads
+- Position and z index
+  - elements are stacked in a stacking order if over layed
+  - element with higher stack level is given higher display priority
+  - By default
+    - sequential elements have a natural stacking order
+      - aka next element in the html covers the one behind it in terms of priority
+  - z-index: 1 overides anything that doesn't have a z-index
+    - though won't be override by negative z-index
+## Flexbox and grid
+- Grid and Flexbox
+  - Flexbox 1D and Grid 2D
+  - In the past float was used in web design ex: float:left, nbw we have flexbox and grid
+  - flexbox
+    - container: parent element
+    - items: child elements
+      - laid on a main axis
+        - horizontal left to right by default (row)
+          - can be changed top down with ```flex-direction:column```
+    - axes have start and end points
+      - cross start and cross end
+      - main start and main end
+    - Define flex container 
+      - ```display: flex;``` or ```display: inline-flex```
+        - ```display: flex```
+          - items will by default display in row stretch to width of items' contents while flex container stretch to width of container
+        - ```display: inline-flex```
+          - same as display:flex but flex container stretches to width of items instead of the width of container
+      - Both auto adjust content to stretch height to max height among flexbox items
+- Flexbox: Orientation and order
+  - flex-direction property determines direction of the main axis
+    - row
+      - left to right
+    - column
+      - top down
+    - row-reverse
+      - right to up
+      - main start and main run flipped
+      - ordering is not flipped, html itself is not changed
+    - column-reverse
+      - down top
+    - in right to left languages, row-reverse is left to right
+  - flex-wrap
+    - items are arranged on a single axis by default
+      - default: nowrap
+        - flex items stay on the same line
+        - remaining space in container will be dislayed
+        - flex items will shrink when the items are larger than the flex container
+      - if container is too small, content will overflow
+    - flex-wrap: wrap
+      - will wrap to next lne
+      - remaining space will be displayed
+    - flex-wrap: wrap-reverse
+      - changes the direction of the wrapped items
+      - only the cross start and cross end are reversed
+    - short  hand flex-flow
+- Sizing with flex
+  - used to size items relative to their container
+  - flex-grow
+    - detemrines how items expand in the flex container
+    - unitless number
+    - 0 default
+    - 1 distributes extra space to all items equally
+  - flex-shrink
+    - how items will shrink if they're larger than container
+    - unitless number
+    - 1 default
+    - 0 prevents items from shrinking
+  - flex-basis
+    - inital size of flex item
+    - length, percent, keywords values
+    - default auto
+      - items displayed same size as content
+      - box-sizing: content box
+        - aka extra content and padding will make it bigger
+      - though normal want border-box so content doesn't scale out of control
+  - flex
+    - flex: 0 1 auto
+      - order is flex grow, flex-shrink, flex-basis
+  - css
+    - give parent container display:flex
+    - give children items a class of flex: 0 1 auto

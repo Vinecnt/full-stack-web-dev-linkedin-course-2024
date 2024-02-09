@@ -8,10 +8,30 @@ html {
     box-sizing: inherit;
 }
 
+body header::before {
+    content: "";
+    background: url(../images/San_Francisco_skyline_from_Coit_Tower.jpg);
+    background-position: center;
+    background-size: cover;
+    display:block;
+    height: 375px;
+    margin: 0px;
+    /* content: ""; */
+}
+
 .logos {
     width: 50px;
 }
 
 .socials{
     justify-content: center;
+}
+
+.education-item {
+    display: flow-root
+}
+.education-item img{
+    width: 100px;
+    float: right;
+    margin-left: 20px
 }
