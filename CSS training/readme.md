@@ -6,6 +6,8 @@
   - [CSS Box Model](#css-box-model)
   - [Layouts, Floats, Possition](#layouts-floats-possition)
   - [Flexbox and grid](#flexbox-and-grid)
+  - [Typography](#typography)
+  - [Layouts: Fluid and Responsive](#layouts-fluid-and-responsive)
 
 ## Getting Started
 - Relative and absolute paths
@@ -396,3 +398,294 @@
   - css
     - give parent container display:flex
     - give children items a class of flex: 0 1 auto
+- Aligning Flex items
+  - Center-aligning with Flexbox
+    - justify-content aligns items on the main axis
+      - the x-axis so to speak, like justify text in a word processor
+    - align-items aligns flex items on the cross axis
+      - the y-axis
+    - set center for both properties to center horiz and vert
+    - Properties can also distribute space around items
+      - justify-content:
+        - flex-start aligns along the main start (left side)
+        - flex-send aligns along the main end (right side)
+        - space-between aligns on both sides distributes remaining space evenly between items
+        - space-around aligns on both sides but distributes same space around each item (will look wider in between items)
+        - space-evenly aligns on both sides but distributes same space between each item and the left and right side of the first and last item respectively
+    - align-items
+      - stretch stretches items to meet the top and bottom of the container flex item is in. However, by default flex items already stetch to meet the height of the container
+      - center reduces items heigh to its contents 
+      - flex-start align items to the cross start (top)
+      - flex-end aligns items to the cross end (bottom)
+  - Adding padding to element extend space for clickability of an object
+    - adding marging doesn't 
+- CSS Grid
+  - Before CSS grids, grid-brased layours were common
+    - grids dividied into columns with gutters to add consistent space between them
+  - CSS creates grid-based layouts with CSS
+  - Defining the grid container
+    - Use display with property grid or inline-grid
+  - by default 
+    - width of grid-items span width of container
+    - width of inline-grid items span width of content
+  - grid vs inline-grid
+    - grid will stack ontop of other grid element
+    - inline-grid will stack next other grid elements
+  - grid lines divide grid into columns and rows
+  - grid lines determine position of grid items using a num index or custom index
+    - negative index can also reference opposite end of grid
+  - grid cell
+    - single unit where grid row and col intersect
+  - grid track is row or column
+  - can be seperated by gutter
+  - grid area may span one or more grid cells and tracks
+- The explicit grid
+  - grid tracks can be defined in the frid container with
+    - grid-template-columns and grid-template-rows
+  - fraction unit: fr
+    - grid-template-columns: 1fr 1fr 1fr;
+      - splits a column grid with equal size
+    - grid-template-columns: 1fr 2fr 1fr;
+      - split into 3 columns where second column twice size
+    - repeat function
+      - grid-template-columns: 1fr 1fr 1fr;
+      - as same grid-template-columns: repeat(3, 1fr);
+    - as same grid-template-columns: 50px repeat(2, 1fr);
+      - first col 50px, following two column split space remaining equally
+- Implicit grid
+  - grid-template-rows and columns define the explicit grid
+    - once exp grid is filled or has been defined, an implicit grid will be created
+      - used when don't know how many col and rows will be
+  - use grid-auto-rows and columns to define implicit grid
+  - this css only applies to items outside the explicit grid
+- Add Gutters with gap
+  - one val adds same amount of space between rows and col
+  - two values, first val add to rows second val to columns
+  - gap: 10 px
+  - use length, calc, or percentage vales
+    - no fr
+    - long hand 
+      - grid-row-gap
+      - grid-column-gap
+    - short hand
+      - grid-gap
+## Typography
+- Typograghy for the web
+  - Overall design and practice of organizing text to communicate and engage reader
+  - Typeface
+    - design of a set of letters, numbers, and symbols that share common design features
+  - font
+    - specific instance of a stype face
+  - font family
+    - collection of fonts
+  - Comic sans
+    - casualk
+  - Script typeface
+    - elegant feeling
+    - headings
+  - Decorative typefaces
+    - big feeling
+  - Monospace Typefaces
+    - for code
+  - Serif Typeface
+    - traditional
+    - times new roman
+  - Sans serif Typeface
+    - comptemporary and mordern
+  - Rise in serif type faces
+    - that what Medium uses
+- Font-family
+  - property is used to define the typeface of an element. Value is declare as a list of fonts options arranged bt priority from highest to lowest 
+  - if font not installed, will try next option until available font found
+  - include generic font family as last option
+  - Generic font families
+    - differ across browser
+    - serif
+    - sans-serif
+    - monospace
+    - cursive
+      - for script or decorative fonts
+    - fantasy
+      - decorative fonts
+    - system-ui
+  - System fonts
+    - can be fallback or primary font options
+    - design to integrate with look and feel of user os
+    - can still include fallback fonts in the stack
+      - font-family: system-ui, sans-serif;
+  - Valid font family names
+    - if contains apace and numbers, should in quotes
+    - generic fonts must always be unquouted
+  - Websafe font
+    - fonts that commonly come preinstalled
+- Font weight and font style
+  - font-weight: 100; light or thinnest
+  - font-weight: 900; darkest 
+    - keyword normal equals to 400
+    - keyword bold equals to 700
+      - default for heading
+  - Missing weights
+    - when weight is specified which no font file exists, typeface choosest closest weight
+  - Font-style
+    - property to define italic font
+      - italic
+        - created by typesetter drawn with slightly cursive style influenced by caligraphy
+      - oblique
+        - slantly normal
+        - if no oblique font, then browser slants normal font
+      - normal
+        - normal font
+  - Web fonts with @font-face
+    - fonts can be downloaded
+    - different format fonts as required by older browsers
+    - woff2 maybe not be supported in legacy
+    - fontsquirrel generator; watch out for license
+```css
+  @font-face{
+    font-family: "same_name as font face";
+    src: url(something.woff);
+  }
+  ...
+  body {
+    font-family: "same_name as font face", other, fonts;
+  }
+```
+  - Online Font services
+    - link to online font service
+    - font.google dot com
+- font-size
+  - definies the size of text and be used with a variety of value types
+  - pixel
+    - ideal for accuracy
+    - absolute value- size is fixe
+    - use whole number value
+      - decimal is inconsistent across browsers
+    - default text is 16px 
+  - em
+    - named after letter m
+    - relative unit
+      - sized in relation to closest ancester elmenet
+      - 1em is = inherected font size
+      - can use whole numbers and decimals
+  - rem
+    - root em
+    - relative unit to only the root element (html)
+    - font sizing in other elements has no effect
+- Font sizing and accessibility
+  - header styles are set according to in font-size em
+  - setting browser default font size will therefore increased heading
+  - relative units
+    - em
+    - rem usually easier to maintain consistent because relative to root element
+    - Design mock ups are usually in pixels
+  - can convert pixels to rem which conversion 16px /16px = 1rem if browser default is 16px
+  - 62.5% Method
+    - popular font sizing by Richard Rutteer
+    - 62.5% of 16 is 10
+    - Math is easier
+    - set root element to font-size: 62.5% and body 1.6 rem
+    - Makes designs easier while respecting user preferences
+    - Image if business user case requires one body 20px and other body 30px
+    - Then with html set to font-size set to 62.5%, then the setting body to 2.0rem and the other body 3.0rem satisfies the requirement while making math easier
+- text-align text-transform
+  - text-align
+    - used to align content with a block elmeent. Inheritable style and defined using keywords
+    - also applies to image element
+    - center
+      - centers element
+    - left
+      - starts left
+    - start
+      - refers to language
+      - so english similar to left
+    - right
+      - starts right
+    - justify
+      - similar to newspaper
+    - doesn't really work with span since span limits width to ocntent
+  - text-transform
+    - control capitalizaiton of text
+    - capitalize
+      - sets first letter of each word to upper case
+- Line height and letter-spacing
+  - line height
+    - sets the vert spacing between lines of text 
+    - used with length, number, percent and keyworld normal
+  - letter spacing
+    - set horiz space between text characters/lines
+  - line height
+    - if value is same as font size, no spacing
+    - if smaller than font size, characters over light
+    - 150% is 1.5 times the font size
+    - By default browser is roughly 1.2
+  - letter spacing
+    - positive value spaces character apart
+    - negative brings together
+    - 0.05em; relative is usually better/cleaner
+## Layouts: Fluid and Responsive
+- Intro to responsive Designs
+  - Opera Mini Browser 2005 Mobile browser
+  - 2009 Responsive Web Design
+    - Ethan Marcotte
+- Intro to media queries
+  - Media queries
+    - selectively apply CSS rules
+    - start with @media
+      - ex: @media screen and (max-width:600px)
+  - print matches to printers and print-related displays
+    - screen matches to devices with a screen
+    - all matches to all devices; default
+  - Media features
+    - test for specific feature of the brwoser or device
+    - media feature
+      - (max-width: 650px)
+    - test for height, colors, orientation and more
+  - Media feature: width
+    - typical to test
+    - Qused to test the width of theviewport
+    - used with max and min with
+    - used with logical operators
+  - logical operators in media feature
+    - and, or, not
+  - All CSS must be conatined withing the curly brackets
+    - css ignored other
+  - Where to put
+    - put underneath corresponding css
+    - group and but at bottom
+    - put in seperate css file
+    - put in link
+- Breakpoints and media queries
+  - breakpoint is the point where media querty is introduced to make css changes when speciifc condition is true
+    - often width or specific viewport of screen
+  - early rwd used breakpoints target specific devices
+    - statcounter for common resolutions
+  - Most common is for rwd is to choose breakpoints where design and layout starts to break rather than focus on specific devices
+  - media feature:wdith
+  - @media (min-width: 960px)
+    - width: 960px exact
+  - To prevent min-width and max-width from overlapping, make one slight lower or higher 
+  - When to use max or min width
+  - Desktop centric first
+    - use max-width queries
+  - Mobile first
+    - min-width queries first
+  - Can combine both to make a range
+    - (min-width: 400) and (max-width: 800px)
+- Fluid layouts
+  - do we always need media queries?
+  - fluid layouts and flexible images may make media queries unnecessary if screen is fluid enough
+  - Flexbox is flexible sizing
+  - height of browser is not fixed, and squeeze and stretch
+  - Use grid for fleixble sizing
+  - Flexible images
+    - background-size: cover
+      - relative to viewport
+- Viewport meta tag
+  - mobile in past and today would zoom down 
+  - RWD wold need to disable the scaling so optimized styyle display as intended
+    - do so by giving browser about the viewport
+    - meta name="viewport" content="width=device-width" initial-scale=1
+    - viewport, device wdith, page is not scaled when loaded
+- Testing responsive layouts
+  - in developer tools can change resolution
+  - 
