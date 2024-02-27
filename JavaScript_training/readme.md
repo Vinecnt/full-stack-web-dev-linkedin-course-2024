@@ -1,0 +1,228 @@
+# JavaScript Training Notes
+
+- [JavaScript Training Notes](#javascript-training-notes)
+  - [JavaScript Intro](#javascript-intro)
+  - [Using JS](#using-js)
+  - [Objects](#objects)
+
+
+## JavaScript Intro
+- JS landscape
+  - JavaScript is core language; Vanilla JS
+  - ECMA Script is the browser spec for the JavaScript language
+    - European Computer Manufacturer Association
+    - defines how JavaScript should be interpreted by browser
+  - TypeScript is a superset of JavaScript, i.e., all JavaScript is valid Typescript
+    - one of main feature is strong typing
+  - React, Vue, Angular
+    - A framework/library written with Javascript to build JavaScript front end applications
+    - introduce new code conventions like JSX(react), and reliance on tools like Babel, Webpack, Node.js
+  - npm, webpack, gulp
+    - build tools and infrastructure used to automate the process of optimizing human-readable JavaScript for the best browser performance
+  - Node.js
+    - Javascript server runtime used to run JavaScript basically everywhere; used to run npm, webpack, babel on computer
+## Using JS
+  - Using JS
+    -  in HTML document
+       - can use JS using ```<script>``` tag in html and write directly in
+    - Externally
+      - can use JS using ```<script>``` tag and specify a file in src
+        - ```<script src="script.js"></script>```
+  - Modern JavaScript loading 
+    - When you open an HTML document in the browser, the browser will read that document, line by line from the top down and fetch and execute any elements
+    - it'll stop what it's doing, go to get the external file, then execute whatever's in that file
+    - this can cause some significant issues
+  - JS run in the browser, before the elements it's acting upon have been rendered, and therefore, we get an error in the browser
+  - traditional solution to this problem is to simply move, the script tag to the end of the document, so the browser only encounters it, when it's rendered everything else
+    - this is a hack
+  - For this reason, we now have new tools in JavaScript to tightly control how, and when JavaScript is loaded
+  - async and defer
+    - default behavior
+      - browser will start parsing the HTML document,
+      - goes and downloads the JavaScript file
+      - executes whatever's in the JavaScript file
+      - then picks up the HTML parsing
+      - This is called content or render blocking, because it quite literally, blocks the rendering of the content in the page
+    - weird problems
+      - causes the page to just load slower,
+  - async keyword 
+    - tells the browser, 'Hey, when you encounter a JavaScript file, keep parsing the HTML while you download the JavaScript file
+    - only stop the parsing when you actually have the file
+    - then execute whatever's in the JavaScript file
+    - dramatically shortens the time it takes for the browser to execute everything
+    - doesn't, create this huge render blocking issue
+    - need to make sure the browser, only executes the JavaScript, after the document is complete
+  - defer keyword
+    - tells the browser, 'parse your HTML and if you encounter JavaScript, just load it alongside your HTML parsing
+    - when the HTML parsing is complete, execute whatever JavaScript you have
+    - end of my script tag, just add defer
+    - we are literally deferring the execution, off the script until, everything else has been rendered
+  - Async and defer should be the standard way of loading JavaScript today
+    - use render blocking, meaning ,either placing the script tag without the async and defer keywords
+    - yet to find a use case to not use async and defer
+    - Loading JavaScript in the footer, is now an anti pattern
+    - JavaScript should always be loaded in the head, and then you use async or defer, to control when that JavaScript is executed on the document
+- Java Script Modules
+  - files tend to get really large
+    - lot of dependent pieces that rely on other pieces requires a lot of scrolling up and down
+  - JavaScript modules allow us to break pieces out of a JavaScript file and place them in a separate file and then import them back into the original file again
+    - script.js
+      - very top of script.js it says import backpack from backpack.js
+      - backpack.js, you'll see here we have a constant called backpack
+        - That's what's being imported
+        - very bottom, it says export default backpack
+      - backpack.js, we've defined a constant called backpack and exported it saying to the browser this entity called backpack
+        - in this case an object
+        - can be used by any other file if it's imported into that other file
+    - in script.js, we import that as that entity, the object, and use it just as if it was inside this file
+    - Everything else is exactly the same because thanks to the JavaScript modules
+    - works as if it was sitting inside script.js
+      - sitting in a separate file
+    - Inside index.html, you need to tell the browser
+    - And second of all, these two files on our modules, they may rely on each other and it's important that they're both loaded before things work properly
+      - set the type attributes to module, both of these automatically get deferred
+    - only run after everything else has happened to ensure that the browser has all the modules available before anything gets rendered out
+## Objects
+- Objects
+  - JavaScript is a prototype based object oriented programming language.
+  - same way we humans work with objects in the real world
+  - JavaScript is a prototype based object oriented programming language
+  - each object is a unique instance of an object prototype.
+  - properties describe the prototype
+  - particular combination and configuration of these properties define
+  - prototype based object orientation
+  - bjects can have features built into them allowing us to change their property values
+  - In JavaScript, these property changing features inside an object are called methods.
+  - objects can contain other objects.
+  - object is a unique and separate object.
+  - There can be one or many of them and changing one object does not change the others.
+  - This mental model of objects described by their unique properties based on an object prototype whose individual properties can be modified using internal methods
+- JS Objects
+  - To describe our real world objects, the backpack in JavaScript, we can use a JavaScript object.
+  - JavaScript objects are collections of data and functionality stored as properties and methods that describe the object and what it can do.
+  - To define an object, to create it, I first need a variable to hold the object.
+  - modern convention here is to create a constant
+  - curly brackets say this is a JavaScript object.
+  - need to populate my object with some data.
+  - 
+  - This is done using properties.
+  - Each property is a name value pair, separated by a colon.
+  - The value can be many different things.
+  - It can be a text string inside quotation marks like right here.
+  - You separate them using a comma.
+  - And the convention is to add each new property on its own line so it's easy to read what's going on inside the object.
+  - An object can also have methods used to change the properties of the object.
+  - Finally, when you work with objects, you'll often see the, this, keyword used.
+  - The this keyword, simply refers to the current object.
+  - So we're saying this object right here.
+  - That way we're referring to the context of the current object and not some other object.
+- Object containers
+  - container called a variable.
+  - constant variable.
+  - const keyword says, this is a constant.
+  - this is a constant, meaning while we can change the properties of the object inside the container, we can't remove or replace the object from the container.
+  - If we try to do so by calling the constant name and using the equal symbol to set the contents to something else, the browser will tell us you can't do that.
+  - You can't change its contents.
+  - nce we've created an object, we might want to change its properties, but we never want to change it to something entirely different.
+  - So even though it's in the constant, the properties are not constant.
+- Object properties
+  - Properties are literally the properties of the object.
+  - Object properties
+  - Object properties are defined using a colon separated name value pair, where the name can be any string and is placed on the left.
+  - And the value can be any string inside quotation marks or an integer or a floating point number or a Boolean value as a true or false or an array, or even another object, placed on the right.
+  - You control the property names.
+  - And in JS the standard states, a property name can only contain letters, digits, dollar signs, and underscores.
+  - If you add quotation marks or hyphens or other symbols the object will not function properly and JavaScript will crash because there'll be incorrect code inside the object definition.
+  - simply use camel case for property names.
+- Accesing Objects
+  - Anytime you want to access an object or anything else contained inside a variable you simply call it by its name and JavaScript will hand it to you.
+  - console log backpack.
+  - backpack object outputs in the console automatically.
+  - go into the console log here and add a string of text to the front
+- Accessing Object Properties
+  - Accessing object properties
+  - There are two ways of accessing object properties, dot notation and bracket notation.
+  - Dot notation is called dot notation because you literally use a dot to separate the different properties.
+  - We can also use it to dig further into the object.
+  - Dot notation is the preferred way of accessing object properties because it's easy to read and understand.
+  - However, in some cases you need more control, either because you want to use a variable as the property name, or because the property name is non-standard for some reason.
+  - bracket notation.
+  - Then to use bracket notation, I need to wrap the property name in quotation marks, because it's a string, and then square brackets.
+  - the bracket notation is more clunky, but it also gives us more control.
+  - allows us to do more advanced things.
+  - inside this bracket notation, I can use that query variable instead of a string.
+  - If you place a variable inside dot notation, the script will simply break, because you're doing something incorrect.
+  - There's also one additional situation where you might need to use bracket notation.
+  - In JavaScript, the standard states that a property name can only contain letters, digits, dollar signs, and underscores.
+  - nothing actively prevents you or a piece of software from creating property names that break these conventions.
+  - could encounter a property name that starts with a digit, or it contains quotation marks or something else.
+  - When using dot notation, you can't access that property if it starts with a number, or uses a hyphen
+  - bracket notation comes to the rescue
+  - these generators of that data do not always conform to JavaScript specifications
+  - in most cases, use dot notation because it's easy to understand.
+  - If you need to pass a variable into the property name, or you need to access a property that is somehow breaking convention, use bracket notation.
+- Object methods
+  - objects can contain their own functions.
+  - function is inside an object, it is called a method.
+  - Each method is added to the object as a property.
+  - two syntaxes for these methods.
+  - function expression meaning we are explicitly saying inside toggle lid, there's a function that has these parameters and this is the function body.
+  - shorthand for this by taking the function expression away and just saying toggle lid, parentheses, and then the parameters.
+  - It works pretty much the same way, but this shorthand is somewhat harder to read.
+  - So the convention is to use a function expression.
+  - So it says function, it's very clear of what's going on.
+  - how one of these methods work.
+  - A parameter is a piece of data we can pass to the function.
+  - A function like you see here is a program that does something, typically change a value somewhere.
+  - And because it is a property, I can just call it using dot notation so I'll say toggle lid.
+  - Hit return and we get this undefined because the function itself is not returning anything to the browser.
+  - However, something changed in the backpack lid open.
+  - This value only changed inside the browser
+  - We can also access these methods and use them inside our script.
+  - browser reads JavaScript from the top to the bottom
+- Classes: Object blueprints
+  - Creating objects blueprints or templates using classes.
+  - classes are relatively new introduction to JavaScript
+  - Classes work as templates for an object type.
+  - To create a class, we start with the class keyword followed by a capitalized name.
+  - This is a naming convention to ensure we know we're now looking at a class instead of just a regular object.
+  - There are actually two ways of declaring a class.
+  - Which is called a class declaration.
+  - Class followed by a name.
+  - Or you can set up a class expression where you create a constant with a name again, capitalized and then you set it equal to class.
+  - And then the curly brackets.
+  - These two are just two different ways of doing the same thing.
+  - The trend currently seems to be, to use an expression but there's no reason to use an expression over a declaration.
+  - They are the same thing.
+  - Inside the class, we use a constructor method to literally construct the object created from that class.
+  - constructor method first defines the parameters for each of the properties
+  - inside the curly brackets, it defines all the properties and set their values to the parameters have been passed in from the class.
+  - And we use this keyword to point to the current object.
+  - use dot notation to go to the property in question and set the property value
+  - We can also add methods to classes.
+  - to create those new objects
+  - First, we create a new variable.
+  - Then we fill it or set it equal to a new backpack.
+  - We say the word new, this is a keyword.
+  - then we point out whatever constructor we want to use.
+  - hen we just pass in the values for each of those properties as parameters.
+  - One thing to note here is you can only use a class after it has been declared.
+  - You have to make sure the class is declared before you start using it.
+  - A good way of avoiding this problem altogether is to place your classes in a separate file and importing them because all imports need to happen at the top of the main file where it's being used.
+  - class to create an object template allows us to define the property and methods structure for all the objects created with that class without having to redeclare them over and over.
+- Object constructors
+  - there is another shorter and less advanced way of doing the same thing, which relies on a basic function.
+  - like with the class, the object constructor uses a capitalized name to let us know this is a constructor function that produces new objects.
+  - object constructor function captures the properties of the new object using its parameters and then defines and assigns values for each property and method using the this keyword and dot notation.
+  - difference between the class and the object constructor function here is the methods live inside the main construction function, just like the properties do.
+  - So here we're assigning a new property, toggleLid and then setting up a function inside.
+  - Whereas in the class the definition of these methods happens outside the main constructor function.
+  - To create a new object from this constructor, we do the same thing we did with the class.
+  - The end result is exactly the same as with the class but there are some significant differences.
+  - The class allows us to do more things.
+  - We can extend classes.
+  - We can add new features to them that are not available inside an object constructor function.
+  - And the class is now the preferred tool for creating objects based on a blueprint.
+  - n old code and in a lot of tutorials you will come across the object constructor functions because that used to be the only way we could do this
+  - use a class unless you are required to use an object constructor function because the classes give you more capabilities than the object constructor function does.
+  - the only reason to use the older function is if you are running it in an old code base or in old infrastructure that have yet to support classes.
