@@ -4,6 +4,7 @@
   - [JavaScript Intro](#javascript-intro)
   - [Using JS](#using-js)
   - [Objects](#objects)
+  - [String Output](#string-output)
 
 
 ## JavaScript Intro
@@ -226,3 +227,29 @@
   - n old code and in a lot of tutorials you will come across the object constructor functions because that used to be the only way we could do this
   - use a class unless you are required to use an object constructor function because the classes give you more capabilities than the object constructor function does.
   - the only reason to use the older function is if you are running it in an old code base or in old infrastructure that have yet to support classes.
+- Global objects
+  - the browser has a long list of default objects you can use for a variety of different purposes.
+  - available and extensively documented in the MDN Web Docs.
+  - These global objects work exactly like the object we've seen so far except, we don't need to define them, they're just available through the browser
+  - date object
+  - We first add a new parameter to the class constructor, then we set up a new property, this.dateAcquired and populated with that parameter with the value
+  - date object can take pretty much any string that describes a date and time and convert it into something meaningful.
+  - What it does is it converts it into the milliseconds that have passed since the 1st of January, 1970 UTC
+  - then it applies methods on top of that to convert that huge number of milliseconds into something meaningful for us humans
+  - toDateString
+  - returns the date portion of the date as a human readable string
+## String Output
+- Mix text and variables with template literals
+  - Java scripts to manipulate the HTML and CSS to get the browser to do what we want.
+  - the entire document is an object in the browser.
+  - browser renders a document, it creates a document object model of that document
+  - we can then access that document object using JavaScript
+  - back ticks tell the browser that anything inside here is a template literal meaning we can mix HTML and strings with JavaScript expressions to literally create templates
+  - ${variable} inside template literal
+- Traditional string output
+  - Template Literals are great for outputting HTML and other content mixed with JavaScript.
+  - this is a very new technology
+  - classic way of outputting string content using plain old strings.
+  - "string" + str_var + "string"
+  - this is not the preferred way of doing things anymore
+  - it's specifically to solve this problem of string concatenation.
